@@ -18,4 +18,13 @@ public class CursoProfesorImpl implements CursoProfesorService {
     public List<CursoProfesor> getAllCursoProfesor(){
         return cursoProfesorRepositories.findAll();
     }
+
+    @Override
+    public CursoProfesor findCursoProfesorById(long id){return cursoProfesorRepositories.findById(id);}
+
+    @Override
+    public void saveCursoProfesor(CursoProfesor cursoProfesor){cursoProfesorRepositories.save(cursoProfesor);}
+
+    @Override
+    public void deleteCursoProfesorById(long id){cursoProfesorRepositories.deleteById(id);}
 }

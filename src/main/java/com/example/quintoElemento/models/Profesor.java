@@ -20,6 +20,8 @@ public class Profesor {
 
     private String apellido;
 
+    private boolean profesorActive;
+
     public Profesor(){}
 
     public Profesor(String nombre, String apellido) {
@@ -31,6 +33,13 @@ public class Profesor {
         this.CursoProfesors = CursoProfesors;
         this.nombre = nombre;
         this.apellido = apellido;
+    }
+
+    public Profesor(Set<CursoProfesor> cursoProfesors, String nombre, String apellido, boolean profesorActive) {
+        CursoProfesors = cursoProfesors;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.profesorActive = profesorActive;
     }
 
     public long getId() {

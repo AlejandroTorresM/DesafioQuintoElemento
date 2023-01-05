@@ -19,4 +19,17 @@ public class CursoServiceImpl implements CursoService {
     public List<Curso> getAllCursos(){
         return cursoRepositories.findAll();
     }
+
+    @Override
+    public Curso findCursoByNombre(String nombre){return cursoRepositories.findByNombre(nombre);}
+
+    @Override
+    public Curso findCursoById(long id){return cursoRepositories.findById(id);}
+
+    @Override
+    public void saveCurso(Curso curso){cursoRepositories.save(curso);}
+
+    @Override
+    public void deleteCurso(long id){cursoRepositories.deleteById(id);}
+
 }
