@@ -1,6 +1,7 @@
 package com.example.quintoElemento.dtos;
 
 import com.example.quintoElemento.models.Alumno;
+import com.example.quintoElemento.models.Curso;
 
 import java.time.LocalDate;
 
@@ -12,8 +13,8 @@ public class AlumnoDTO {
 
     private LocalDate fechaDeNacimiento;
 
+    private String curso;
 
-    
     public AlumnoDTO(){}
 
     public AlumnoDTO(Alumno alumno){
@@ -23,6 +24,7 @@ public class AlumnoDTO {
         this.historia = alumno.getHistoria();
         this.fechaDeNacimiento = alumno.getFechaDeNacimiento();
         this.email = alumno.getEmail();
+        this.curso = alumno.getCurso().getNombre();
     }
 
     public long getId() {
@@ -47,5 +49,9 @@ public class AlumnoDTO {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getCurso() {
+        return curso;
     }
 }
