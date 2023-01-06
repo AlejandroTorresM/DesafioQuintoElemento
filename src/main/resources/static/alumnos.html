@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/index.css">
+    <title>Alumnos</title>
+</head>
+
+<body class="container" id="app">
+    <header>
+        <h1>Servicio de Alumnos</h1>
+        <a href="./index.html" class="inicio">INICIO</a>
+    </header>
+
+    <main class="mt-5 d-flex flex-column align-items-center">
+        <h2>Listado de Alumnos</h2>
+        <div class="contenedorAccesos d-flex mt-5 flex-wrap">
+            <button class="btn btn-dark w-100 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                    class="bi bi-plus-circle"></i></button>
+            <!-- Button trigger modal -->
+            <!-- Modal CREACION ALUMNO-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-black">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Crear Alumno</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Nombre" v-model="nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Apellido" v-model="apellido">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Historia</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Historia" v-model="historia">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+                                <input type="date" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="xxxx/xx/xx" v-model="fecDeNac">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="email" v-model="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Curso a asignar</label>
+                                <select name="" id="" v-model="curso">
+                                    <option :value="curso.id" v-for="curso in cursos">{{curso.id}} {{curso.nombre}}
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" @click="crearAlumno">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-light table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Historia</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="alumno in alumnos">
+                        <th scope="row">{{alumno.id}}</th>
+                        <td>{{alumno.nombre}}</td>
+                        <td>{{alumno.apellido}}</td>
+                        <td>{{alumno.fechaDeNacimiento}}</td>
+                        <td>{{alumno.historia}}</td>
+                        <td>{{alumno.email}}</td>
+                        <td>{{alumno.curso}} </td>
+                        <td>
+                            <button class="btn btn-danger align-content-center" @click="eliminarAlumno(alumno)">
+                                <i class="bi bi-person-x-fill"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <!-- Button MODIFICAR ALUMNO -->
+                            <button class="btn btn-lg align-content-center" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal2">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModal2Label">Modificar Alumno</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Nombre" v-model="nombreActualizado">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Apellido" v-model="apellidoActualizado">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Historia</label>
+                                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Historia" v-model="historiaActualizado">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+                                                <input type="date" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="xxxx/xx/xx" v-model="fecDeNacActualizada">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="email" v-model="emailActualizado">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary" @click="actualizarAlumno(alumno)">Actualizar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <Script src="./assets/alumnos.js"></Script>
+</body>
+
+</html>

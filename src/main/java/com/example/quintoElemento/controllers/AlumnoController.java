@@ -44,14 +44,14 @@ public class AlumnoController {
     }
 
 
-    @DeleteMapping("/alumnos/{id}/delete")
+    @DeleteMapping("/alumnos/delete/{id}")
     public ResponseEntity<Object> borrarAlumno(
             @PathVariable long id){
         alumnoService.deleteAlumnoById(id);
         return new ResponseEntity<>("Alumno eliminado con exito", HttpStatus.ACCEPTED);
     }
 
-    @PatchMapping("/alumnos/{id}/update")
+    @PatchMapping("/alumnos/update/{id}")
     public ResponseEntity<Object> modificarAlumno(
             @PathVariable long id,
             @RequestParam String nombre, @RequestParam String apellido,
