@@ -62,7 +62,7 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Curso a asignar</label>
                                 <select name="" id="" v-model="curso">
-                                    <option :value="curso.id" v-for="curso in cursos">{{curso.id}} {{curso.nombre}}
+                                    <option :value="curso.id" v-for="curso in cursos">{{curso.id}}-{{curso.nombre}}
                                     </option>
                                 </select>
                             </div>
@@ -106,7 +106,7 @@
                         <td>
                             <!-- Button MODIFICAR ALUMNO -->
                             <button class="btn btn-lg align-content-center" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal2">
+                            data-bs-target="#exampleModal2" @click="actualizarId(alumno)">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
 
@@ -150,7 +150,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-primary" @click="actualizarAlumno(alumno)">Actualizar</button>
+                                            <button type="button" class="btn btn-primary" @click="actualizarAlumno()">Actualizar</button>
                                         </div>
                                     </div>
                                 </div>

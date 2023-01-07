@@ -43,14 +43,14 @@ public class ProfesorController {
         return new ResponseEntity<>("Profesor Creado", HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/profesores/{id}/delete")
+    @DeleteMapping("/profesores/delete/{id}")
     public ResponseEntity<Object> borrarProfesor(
             @PathVariable long id){
         profesorService.deleteProfesorById(id);
         return new ResponseEntity<>("Profesor Eliminado", HttpStatus.ACCEPTED);
     }
 
-    @PatchMapping("/profesores/{id}/update")
+    @PatchMapping("/profesores/update/{id}")
     public ResponseEntity<Object> updateProfesor(
             @PathVariable long id, @RequestParam String nombre, @RequestParam String apellido){
         Profesor profesor = profesorService.findProfesorById(id);
@@ -77,7 +77,7 @@ public class ProfesorController {
         return new ResponseEntity<>("Profesoy y curso asignados correctamente", HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/profesores/cursos/{id}/delete")
+    @DeleteMapping("/profesores/cursos/delete/{id}")
     public ResponseEntity<Object> deleteCursoProfesor(
             @PathVariable long id){
         cursoProfesorService.deleteCursoProfesorById(id);

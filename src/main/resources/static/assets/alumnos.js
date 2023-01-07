@@ -16,6 +16,7 @@ createApp({
             historiaActualizado: '',
             fecDeNacActualizada: '',
             emailActualizado: '',
+            idDeAlumno: '',
         };
     },
     created() {
@@ -45,8 +46,12 @@ createApp({
             .then(()=>window.location.reload())
             .catch(error=>alert(`${error.response.data.message}`))          
         },
-        actualizarAlumno(alumno){
-            axios.patch("/api/alumnos/update/"+alumno.id, `nombre=${this.nombreActualizado}&apellido=${this.apellidoActualizado}&fechaDeNacimiento=${this.fecDeNacActualizada}&historia=${this.historiaActualizado}&email=${this.emailActualizado}`)
+        actualizarId(alumno){
+            this.idDeAlumno = alumno.id;
+            console.log(this.idDeAlumno);
+        },
+        actualizarAlumno(){
+            axios.patch("/api/alumnos/update/"+this.idDeAlumno, `nombre=${this.nombreActualizado}&apellido=${this.apellidoActualizado}&fechaDeNacimiento=${this.fecDeNacActualizada}&historia=${this.historiaActualizado}&email=${this.emailActualizado}`)
             .then(()=>alert("NUEVOS DATOS DE ALUMNO"+" "+this.nombreActualizado+" "+this.apellidoActualizado+" "+this.fecDeNacActualizada+" "+this.historiaActualizado+" "+this.emailActualizado))
             .then(()=>window.location.reload())
             .catch(error=>alert(`${error.response.data.message}`))

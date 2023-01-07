@@ -35,14 +35,14 @@ public class CursoController {
         return new ResponseEntity<>("Curso Creado", HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/cursos/{id}/delete")
+    @DeleteMapping("/cursos/delete/{id}")
     public ResponseEntity<Object> eliminarCruso(
             @PathVariable long id){
         cursoService.deleteCurso(id);
         return new ResponseEntity<>("Curso eliminado con exito",HttpStatus.ACCEPTED);
     }
 
-    @PatchMapping("/cursos/{id}/update")
+    @PatchMapping("/cursos/update/{id}")
     public ResponseEntity<Object> modificarCuros(
             @PathVariable long id,
             @RequestParam String nombreCurso){
